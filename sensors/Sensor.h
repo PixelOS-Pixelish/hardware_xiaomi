@@ -116,6 +116,17 @@ class SysfsPollingOneShotSensor : public OneShotSensor {
     int mPollFd;
 };
 
+const std::string kTsDoubleTapPressedPath = "/sys/devices/platform/soc/884000.i2c/i2c-1/1-0038/double_tap_pressed";
+
+class DoubleTapSensor : public SysfsPollingOneShotSensor {
+  public:
+    DoubleTapSensor(int32_t sensorHandle, ISensorsEventCallback* callback)
+        : SysfsPollingOneShotSensor(
+              sensorHandle, callback, kTsDoubleTapPressedPath,
+              "Double Tap Sensor", "org.yaap.sensor.double_tap",
+              static_cast<SensorType>(static_cast<int32_t>(SensorType::DEVICE_PRIVATE_BASE) + 1)) {}
+};
+
 }  // namespace implementation
 }  // namespace subhal
 }  // namespace V2_1

@@ -64,6 +64,10 @@ cc_binary {
     ],
     vendor: true,
     header_libs: ["xiaomifingerprint_headers"],
+    lto: {
+        thin: true,
+    },
+    whole_program_vtables: true,
 }
 
 sysprop_library {

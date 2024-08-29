@@ -5,24 +5,7 @@
 //
 
 cc_library_shared {
-    name: "sensors.udfps",
-    defaults: ["hidl_defaults"],
-    srcs: [
-        "udfps_hal.cpp",
-    ],
-    shared_libs: [
-        "libcutils",
-        "liblog",
-        "libutils",
-    ],
-    header_libs: [
-        "libhardware_headers",
-    ],
-    vendor: true,
-}
-
-cc_library_shared {
-    name: "sensors.xiaomi",
+    name: "sensors.xiaomi.v2",
     defaults: ["hidl_defaults"],
     srcs: [
         "Sensor.cpp",

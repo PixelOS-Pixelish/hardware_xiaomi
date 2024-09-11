@@ -25,6 +25,10 @@
             <instance>default</instance>
         </interface>
         <interface>
+            <name>IFingerprintOptical</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
             <name>IFingerprintRecalibration</name>
             <instance>default</instance>
         </interface>

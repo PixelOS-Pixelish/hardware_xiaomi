@@ -4,9 +4,35 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+soong_config_module_type {
+    name: "xiaomi_sensors_hal_cc_defaults",
+    module_type: "cc_defaults",
+    config_namespace: "XIAOMI_SENSORS",
+    value_variables: ["DOUBLE_TAP_PATH", "SINGLE_TAP_PATH"],
+    properties: ["cppflags"],
+}
+
+xiaomi_sensors_hal_cc_defaults {
+    name: "xiaomi_sensors_hal_defaults",
+    soong_config_variables: {
+        DOUBLE_TAP_PATH: {
+            cppflags: ["-DDOUBLE_TAP_PATH=\"%s\""],
+	    conditions_default: {
+	        cppflags: ["-DDOUBLE_TAP_PATH=\"/sys/devices/platform/soc/884000.i2c/i2c-1/1-0038/double_tap_pressed\""]
+            },
+        },
+        SINGLE_TAP_PATH: {
+            cppflags: ["-DSINGLE_TAP_PATH=\"%s\""],
+            conditions_default: {
+                cppflags: ["-DSINGLE_TAP_PATH=\"/sys/devices/platform/soc/884000.i2c/i2c-1/1-0038/single_tap_pressed\""]
+            },
+        },
+    },
+}
+
 cc_library_shared {
     name: "sensors.xiaomi.v2",
-    defaults: ["hidl_defaults"],
+    defaults: ["hidl_defaults", "xiaomi_sensors_hal_defaults"],
     srcs: [
         "Sensor.cpp",
         "SensorsSubHal.cpp",
